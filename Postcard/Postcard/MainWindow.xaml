@@ -12,7 +12,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Orientation="Vertical" Width="auto" Margin="7">
-            <Button Command="{Binding LoadImageCommand}">Load image</Button>
+            <Button Command="{Binding SelectBaseImageCommand}">Select base image</Button>
         </StackPanel>
         <Grid Grid.Column="1" Background="DimGray">
             <InkCanvas VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="300"  ResizeEnabled="True" MoveEnabled="True"></InkCanvas>

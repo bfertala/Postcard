@@ -1,48 +1,38 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using Microsoft.Win32;
+using Postcard.FileSeletctors;
 
 namespace Postcard.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// See http://www.mvvmlight.net
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        public MainViewModel()
+        private readonly IImageSelector _imageSelector;
+        private string _selectedBaseImagePath;
+
+        public MainViewModel(IImageSelector imageSelector)
         {
-            LoadImageCommand = new RelayCommand(LoadImage);
+            _imageSelector = imageSelector;
+            _selectedBaseImagePath = string.Empty;
+
+            SelectBaseImageCommand = new RelayCommand(SelectBaseImage);
         }
 
-        public ICommand LoadImageCommand { get; }
+        public ICommand SelectBaseImageCommand { get; }
 
-        private void LoadImage()
+        public ICommand GenerateImageCommand { get; }
+
+        private void SelectBaseImage()
         {
-            var fileName = SelectImage();
-            
-        }
+            _imageSelector.SelectFile();
 
-        private string SelectImage()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog()
+            if (!_imageSelector.IsImageSelected)
             {
-                Filter = "Image Files|*.bmp",
-                RestoreDirectory = true
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                return openFileDialog.FileName;
+                _selectedBaseImagePath = string.Empty;
             }
 
-            return null;
+            _selectedBaseImagePath = _imageSelector.SelectedImagePath;
         }
     }
 }
