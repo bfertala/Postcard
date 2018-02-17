@@ -3,36 +3,36 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Postcard.FileSeletctors;
+using BusinessLogic;
+using BusinessLogic.ImageLoaders;
 
 namespace Postcard.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
         private readonly IImageSelector _imageSelector;
-        private string _selectedBaseImagePath;
+        private readonly IImageLoader _baseImageLoader;
 
-        public MainViewModel(IImageSelector imageSelector)
+        public MainViewModel(IImageSelector imageSelector, IImageLoader baseImageLoader)
         {
             _imageSelector = imageSelector;
-            _selectedBaseImagePath = string.Empty;
+            _baseImageLoader = baseImageLoader;
 
-            SelectBaseImageCommand = new RelayCommand(SelectBaseImage);
+            LoadBaseImageCommand = new RelayCommand(LoadBaseImage);
         }
 
-        public ICommand SelectBaseImageCommand { get; }
+        public ICommand LoadBaseImageCommand { get; }
 
-        public ICommand GenerateImageCommand { get; }
-
-        private void SelectBaseImage()
+        private void LoadBaseImage()
         {
             _imageSelector.SelectFile();
 
             if (!_imageSelector.IsImageSelected)
             {
-                _selectedBaseImagePath = string.Empty;
+                _baseImageLoader.Unload();
             }
 
-            _selectedBaseImagePath = _imageSelector.SelectedImagePath;
+            _baseImageLoader.Load(_imageSelector.SelectedImagePath);
         }
     }
 }
