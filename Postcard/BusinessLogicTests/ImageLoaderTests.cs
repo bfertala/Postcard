@@ -1,8 +1,8 @@
-﻿using System;
-using System.Drawing;
-using BusinessLogic.ImageLoaders;
+﻿using BusinessLogic.ImageLoaders;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Drawing;
 
 namespace BusinessLogicTests
 {

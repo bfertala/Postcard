@@ -14,6 +14,7 @@ namespace Postcard.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<IMessageDisplayer, ErrorMessageDisplayer>();
             SimpleIoc.Default.Register<IErrorHandler, MessageDisplayingErrorHandler>();
             SimpleIoc.Default.Register<IImageSelector, ImageSelector>();
             SimpleIoc.Default.Register<IImageFileLoader, ImageFileLoader>();

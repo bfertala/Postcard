@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using BusinessLogic.Exceptions;
+using Postcard.Properties;
 
 namespace Postcard.ErrorHandlers
 {
     public class MessageDisplayingErrorHandler : IErrorHandler
     {
+        private readonly IMessageDisplayer _messageDisplayer;
         private Dictionary<string, string> _supportedExceptions;
 
-        public MessageDisplayingErrorHandler()
+        public MessageDisplayingErrorHandler(IMessageDisplayer messageDisplayer)
         {
-            _supportedExceptions = new Dictionary<string, string>();
+            _messageDisplayer = messageDisplayer;
+            _supportedExceptions = new Dictionary<string, string>
+            {
+                {GetExceptionTypeName<OutOfMemoryException>(), Resources.OutOfMemoryMessage},
+                {GetExceptionTypeName<FileNotFoundException>(), Resources.FileNotFoundMessage},
+                {GetExceptionTypeName<UriInsteadOfLocalPathException>(), Resources.UriInsteadOfLocalPathMessage}
+            };
         }
 
         public void Execute(Action action)
@@ -47,6 +57,8 @@ namespace Postcard.ErrorHandlers
         private void DisplayErrorMessage(Exception exception)
         {
             var exceptionMessage = _supportedExceptions[GetExceptionTypeName(exception)];
+
+            _messageDisplayer.Display(exceptionMessage);
         }
     }
 }

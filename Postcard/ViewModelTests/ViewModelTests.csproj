@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{A55DDE8D-9C2D-45EF-824E-C559A2F7FC97}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Postcard\Postcard.csproj">
       <Project>{9c9bcba3-f6ab-49bc-894e-eb7c9822fe08}</Project>
       <Name>Postcard</Name>
