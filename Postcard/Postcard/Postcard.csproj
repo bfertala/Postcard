@@ -73,7 +73,9 @@
     </ApplicationDefinition>
     <Compile Include="FileSeletctors\IImageSelector.cs" />
     <Compile Include="FileSeletctors\ImageSelector.cs" />
+    <Compile Include="ErrorHandlers\IErrorHandler.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ErrorHandlers\MessageDisplayingErrorHandler.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

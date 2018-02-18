@@ -1,10 +1,10 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Postcard.FileSeletctors;
 using BusinessLogic;
 using BusinessLogic.ImageLoaders;
+using Postcard.ErrorHandlers;
 
 namespace Postcard.ViewModel
 {
@@ -12,13 +12,15 @@ namespace Postcard.ViewModel
     {
         private readonly IImageSelector _imageSelector;
         private readonly IImageLoader _baseImageLoader;
+        private readonly IErrorHandler _errorHandler;
 
-        public MainViewModel(IImageSelector imageSelector, IImageLoader baseImageLoader)
+        public MainViewModel(IImageSelector imageSelector, IImageLoader baseImageLoader, IErrorHandler errorHandler)
         {
             _imageSelector = imageSelector;
             _baseImageLoader = baseImageLoader;
+            _errorHandler = errorHandler;
 
-            LoadBaseImageCommand = new RelayCommand(LoadBaseImage);
+            LoadBaseImageCommand = new RelayCommand(() => _errorHandler.Execute(LoadBaseImage));
         }
 
         public ICommand LoadBaseImageCommand { get; }
