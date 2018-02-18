@@ -31,7 +31,7 @@ namespace Postcard.ViewModel
 
             if (!_imageSelector.IsImageSelected)
             {
-                _baseImageLoader.Unload();
+                return;
             }
 
             _baseImageLoader.Load(_imageSelector.SelectedImagePath);
