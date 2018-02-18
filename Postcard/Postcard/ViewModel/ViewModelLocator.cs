@@ -1,6 +1,4 @@
-﻿using BusinessLogic;
-using BusinessLogic.ImageLoaders;
-using GalaSoft.MvvmLight;
+﻿using BusinessLogic.ImageLoaders;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using Postcard.ErrorHandlers;

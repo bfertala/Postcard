@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Postcard.FileSeletctors;
-using BusinessLogic;
 using BusinessLogic.ImageLoaders;
 using Postcard.ErrorHandlers;
 

@@ -9,7 +9,7 @@ namespace Postcard.ErrorHandlers
     public class MessageDisplayingErrorHandler : IErrorHandler
     {
         private readonly IMessageDisplayer _messageDisplayer;
-        private Dictionary<string, string> _supportedExceptions;
+        private readonly Dictionary<string, string> _supportedExceptions;
 
         public MessageDisplayingErrorHandler(IMessageDisplayer messageDisplayer)
         {

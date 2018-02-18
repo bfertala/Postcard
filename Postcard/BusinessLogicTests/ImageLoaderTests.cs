@@ -202,7 +202,7 @@ namespace BusinessLogicTests
             try
             {
                 // If the image is disposed, it throws a random exception while executing operation below
-                var x = image.FrameDimensionsList;
+                var notUsed = image.FrameDimensionsList;
 
                 return false;
             }
